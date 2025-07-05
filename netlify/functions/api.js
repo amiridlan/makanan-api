@@ -168,4 +168,4 @@ app.get('/recipes/:id', (req, res) => {
   res.json(recipe);
 });
 
-module.exports.handler = serverless(app);
+module.exports.handler = serverless(app, { basePath: '/.netlify/functions/api' });
