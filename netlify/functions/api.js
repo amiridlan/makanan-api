@@ -176,4 +176,13 @@ app.get('/recipes/:id', (req, res) => {
   res.json(recipe);
 });
 
+app.get('/recipes/:id/image', (req, res) => {
+  const id = parseInt(req.params.id);
+  const recipe = recipes.find(r => r.id === id);
+  if (!recipe) {
+    return res.status(404).json({ error: 'Recipe not found' });
+  }
+  res.json({ image: recipe.image });
+});
+
 module.exports.handler = serverless(app, { basePath: '/.netlify/functions/api' });
