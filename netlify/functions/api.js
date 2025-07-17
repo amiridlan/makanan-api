@@ -176,6 +176,9 @@ app.get('/recipes/:id', (req, res) => {
   res.json(recipe);
 });
 
+const path = require('path');
+const fs = require('fs');
+
 app.get('/recipes/:id/image', (req, res) => {
   const id = parseInt(req.params.id);
   const recipe = recipes.find(r => r.id === id);
@@ -183,6 +186,32 @@ app.get('/recipes/:id/image', (req, res) => {
     return res.status(404).json({ error: 'Recipe not found' });
   }
   res.json({ image: recipe.image });
+});
+
+app.get('/recipes/:id/image-file', (req, res) => {
+  const id = parseInt(req.params.id);
+  const recipe = recipes.find(r => r.id === id);
+  if (!recipe) {
+    return res.status(404).json({ error: 'Recipe not found' });
+  }
+  const imagePath = path.join(__dirname, '..', 'static', recipe.image);
+  fs.stat(imagePath, (err, stats) => {
+    if (err || !stats.isFile()) {
+      return res.status(404).json({ error: 'Image file not found' });
+    }
+    const ext = path.extname(imagePath).toLowerCase();
+    let contentType = 'application/octet-stream';
+    if (ext === '.jpg' || ext === '.jpeg') {
+      contentType = 'image/jpeg';
+    } else if (ext === '.png') {
+      contentType = 'image/png';
+    } else if (ext === '.gif') {
+      contentType = 'image/gif';
+    }
+    res.setHeader('Content-Type', contentType);
+    const readStream = fs.createReadStream(imagePath);
+    readStream.pipe(res);
+  });
 });
 
 module.exports.handler = serverless(app, { basePath: '/.netlify/functions/api' });
