@@ -18,7 +18,7 @@ const recipes = [
     origin: "Malaysia",
     cookTimeMinutes: 45,
     caloriesPerServing: 550,
-    image: "https://via.placeholder.com/300?text=Nasi+Lemak",
+    image: "/static/images/nasi-lemak.jpg",
     ingredients: [
       "2 cups of rice",
       "400 ml coconut milk",
@@ -39,12 +39,12 @@ const recipes = [
   },
   {
     id: 2,
-    name: "Char Kway Teow",
+    name: "Kway Teow Goreng",
     description: "Stir-fried flat rice noodles with shrimp, Chinese sausage, egg, bean sprouts, and chives.",
     origin: "Malaysia",
     cookTimeMinutes: 30,
     caloriesPerServing: 600,
-    image: "https://via.placeholder.com/300?text=Char+Kway+Teow",
+    image: "/static/images/kway-teow-goreng.jpg",
     ingredients: [
       "200g flat rice noodles",
       "100g shrimp",
@@ -71,7 +71,7 @@ const recipes = [
     origin: "Malaysia",
     cookTimeMinutes: 60,
     caloriesPerServing: 400,
-    image: "https://via.placeholder.com/300?text=Roti+Canai",
+    image: "/static/images/roti-canai.jpg",
     ingredients: [
       "2 cups all-purpose flour",
       "1 teaspoon salt",
@@ -95,7 +95,7 @@ const recipes = [
     origin: "Malaysia",
     cookTimeMinutes: 40,
     caloriesPerServing: 500,
-    image: "https://via.placeholder.com/300?text=Laksa",
+    image: "/static/images/laksa.jpg",
     ingredients: [
       "200g rice noodles",
       "200g prawns",
@@ -116,12 +116,12 @@ const recipes = [
   },
   {
     id: 5,
-    name: "Hainanese Chicken Rice",
+    name: "Nasi Ayam",
     description: "Poached chicken and seasoned rice served with chili sauce and garlic paste.",
     origin: "Malaysia",
     cookTimeMinutes: 50,
     caloriesPerServing: 450,
-    image: "https://via.placeholder.com/300?text=Hainanese+Chicken+Rice",
+    image: "/static/images/nasi-ayam.jpg",
     ingredients: [
       "1 whole chicken",
       "2 cups jasmine rice",
