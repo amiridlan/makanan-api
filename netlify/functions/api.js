@@ -194,8 +194,11 @@ app.get('/recipes/:id/image-file', (req, res) => {
   if (!recipe) {
     return res.status(404).json({ error: 'Recipe not found' });
   }
-  // Remove leading slash from image path if present
-  const imageRelativePath = recipe.image.startsWith('/') ? recipe.image.substring(1) : recipe.image;
+  // Remove leading slash and leading 'static/' from image path if present
+  let imageRelativePath = recipe.image.startsWith('/') ? recipe.image.substring(1) : recipe.image;
+  if (imageRelativePath.startsWith('static/')) {
+    imageRelativePath = imageRelativePath.substring('static/'.length);
+  }
   const imagePath = path.join(__dirname, '..', 'static', imageRelativePath);
   fs.stat(imagePath, (err, stats) => {
     if (err || !stats.isFile()) {
