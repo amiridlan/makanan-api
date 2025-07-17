@@ -194,7 +194,9 @@ app.get('/recipes/:id/image-file', (req, res) => {
   if (!recipe) {
     return res.status(404).json({ error: 'Recipe not found' });
   }
-  const imagePath = path.join(__dirname, '..', 'static', recipe.image);
+  // Remove leading slash from image path if present
+  const imageRelativePath = recipe.image.startsWith('/') ? recipe.image.substring(1) : recipe.image;
+  const imagePath = path.join(__dirname, '..', 'static', imageRelativePath);
   fs.stat(imagePath, (err, stats) => {
     if (err || !stats.isFile()) {
       return res.status(404).json({ error: 'Image file not found' });
